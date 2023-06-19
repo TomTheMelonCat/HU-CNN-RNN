@@ -9,7 +9,7 @@ authors                      object
 date                 datetime64[ns]
 dtype: object
 
-Data preview (10 rows): 
+Data preview (first row): 
                                                                    0
 link               https://www.huffpost.com/entry/covid-boosters-...
 headline           Over 4 Million Americans Roll Up Sleeves For O...
@@ -19,16 +19,16 @@ authors                                         Carla K. Johnson, AP
 date                                             2022-09-23 00:00:00
 
 Missing values: 
-link                 0
-headline             0
-category             0
-short_description    0
-authors              0
-date                 0
+link                     0
+headline                 6
+category                 0
+short_description    19712
+authors              37418
+date                     0
 dtype: int64
 
-Train length: 167621
-Test length: 41906
+Train length: 209527
+Test length: 209527
 
 Class distributions of the dataset are represented as a plot saved at:
-C:\Users\jiri.kadlec\Desktop\škola\hu\HU-CNN-RNN\statistics\class_distributions.png.
+D:\Programy\Plocha\škola\HU\HU-CNN-RNN\statistics\class_distributions.png.
