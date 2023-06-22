@@ -162,3 +162,6 @@ cython_debug/
 # Additional folders and files
 .venv
 /data
+/model_*
+/statistics
+*.json
