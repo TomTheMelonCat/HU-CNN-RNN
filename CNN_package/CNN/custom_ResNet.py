@@ -1,5 +1,6 @@
 import keras.layers as L
 import numpy as np
+import os
 
 from keras.applications import ResNet50
 from keras.callbacks import EarlyStopping, ReduceLROnPlateau, ModelCheckpoint
@@ -27,9 +28,7 @@ class CustomResnet:
             [
                 base_model,
                 L.Flatten(),
-                L.Dense(1024, activation="relu"),
-                L.BatchNormalization(),
-                L.Dropout(0.2),
+                L.Dropout(0.3),
                 L.Dense(2, activation="softmax"),
             ]
         )
@@ -59,7 +58,7 @@ class CustomResnet:
         )
 
         checkpointing = ModelCheckpoint(
-            DataIO.get_model_path(), save_best_only=True, monitor="val_loss", mode="min"
+            DataIO.get_model_path("custom_ResNet"), save_best_only=True, monitor="val_loss", mode="min"
         )
 
         history = model.fit(
@@ -74,7 +73,7 @@ class CustomResnet:
         )
 
     def test_(self) -> None:
-        model = load_model(DataIO.get_model_path())
+        model = load_model(DataIO.get_model_path("custom_ResNet"))
 
         test_steps = np.ceil(self.preprocessing.test_df.shape[0] / self.params["general"]["batch_size"])
 

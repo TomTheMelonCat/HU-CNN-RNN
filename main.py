@@ -9,13 +9,14 @@ ROOT = os.path.dirname(__file__)
 
 def main() -> None:
     data_train_val = DataIO.load_data(os.path.join(ROOT, "data", "train"))
-    data_test = DataIO.load_data(os.path.join(ROOT, "data", "test"))
-    preprocessing = Preprocessing(data_train_val, data_test, True, True, "resnet")
-    
+    data_test = DataIO.load_data(os.path.join(ROOT, "data", "test"), True)
+
+    #preprocessing = Preprocessing(data_train_val, data_test, True, True, "default")
     #custom_cnn = CustomCNN(preprocessing)
     #custom_cnn.train_()
     #custom_cnn.test_()
 
+    preprocessing = Preprocessing(data_train_val, data_test, True, True, "resnet")
     custom_resnet = CustomResnet(preprocessing)
     custom_resnet.train_()
     custom_resnet.test_()

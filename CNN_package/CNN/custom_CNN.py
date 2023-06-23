@@ -76,7 +76,7 @@ class CustomCNN:
         )
 
         checkpointing = ModelCheckpoint(
-            DataIO.get_model_path(), save_best_only=True, monitor="val_loss", mode="min"
+            DataIO.get_model_path("custom_CNN"), save_best_only=True, monitor="val_loss", mode="min"
         )
 
         history = model.fit(
@@ -91,7 +91,7 @@ class CustomCNN:
         )
 
     def test_(self) -> None:
-        model = load_model(DataIO.get_model_path())
+        model = load_model(DataIO.get_model_path('custom_CNN'))
 
         test_steps = np.ceil(self.preprocessing.test_df.shape[0] / self.params["general"]["batch_size"])
 

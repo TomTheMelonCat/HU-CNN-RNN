@@ -9,10 +9,14 @@ from typing import Text, Any, Dict, Tuple
 
 class DataIO:
     @staticmethod
-    def load_data(dataset_path: Text) -> pd.DataFrame:
+    def load_data(dataset_path: Text, test: bool = False) -> pd.DataFrame:
         filenames = [str(child.resolve()) for child in Path.iterdir(Path(dataset_path))]
-        categories = ["cat" if str(x).find("cat") == -1 else "dog" for x in filenames]
-
+        if test:
+            return pd.DataFrame({
+            'filename': filenames,
+        })
+        
+        categories = ["cat" if str(x).find("cat") != -1 else "dog" for x in filenames]
         return pd.DataFrame({
             'filename': filenames,
             'category': categories
@@ -48,8 +52,8 @@ class DataIO:
         model.save(os.path.join(model_path, "RNN_custom_model.hdf5"))
 
     @staticmethod
-    def get_model_path() -> Text:
-        model_path_folder = os.path.join(Path(__file__).parents[2], "model_weights")
+    def get_model_path(folder_name: Text) -> Text:
+        model_path_folder = os.path.join(Path(__file__).parents[2], folder_name)
         if not os.path.exists(model_path_folder):
             os.mkdir(model_path_folder)
         return os.path.join(model_path_folder, '.custom_CNN_best.hdf5')
