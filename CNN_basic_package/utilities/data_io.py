@@ -9,14 +9,14 @@ from typing import Text, Any, Dict, Tuple
 
 class DataIO:
     @staticmethod
-    def load_data(dataset_path: Text, test: bool = False) -> pd.DataFrame:
-        filenames = [str(child.resolve()) for child in Path.iterdir(Path(dataset_path))]
-        if test:
-            return pd.DataFrame({
-            'filename': filenames,
-        })
-        
-        categories = ["cat" if str(x).find("cat") != -1 else "dog" for x in filenames]
+    def load_data(dataset_root_path: Text) -> pd.DataFrame:
+        filenames = []
+        categories = []
+        for root, dirs, files in os.walk(dataset_root_path):
+            for dir in dirs:
+                filenames += [str(child.resolve()) for child in Path.iterdir(Path(os.path.join(root, dir)))]
+
+        categories += ["horse" if str(x.split("\\")[-1]).find("horse") != -1 else "human" for x in filenames]
         return pd.DataFrame({
             'filename': filenames,
             'category': categories

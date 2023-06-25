@@ -62,7 +62,7 @@ class Statistics:
         return stats
 
     def plot_class_distribution(self, save: bool) -> None:
-        plt.figure(figsize=(10, 5))
+        plt.figure(figsize=(10, 8))
         self.df['category'].value_counts().plot(kind='bar')
         plt.title('Class Distribution')
         plt.xlabel('Classes')
