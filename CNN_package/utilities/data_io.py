@@ -33,25 +33,6 @@ class DataIO:
                 return data
 
     @staticmethod
-    def save_statistics(statistics: Text = "") -> None:
-        target_path = os.path.join(Path(__file__).parents[2], "statistics")
-        if not os.path.exists(target_path):
-            os.mkdir(target_path)
-        with open(os.path.join(target_path, "dataset_statistics.txt"), "w") as f:
-            f.write(statistics)
-
-    @staticmethod
-    def save_model_weights(model: Any, folder_name: Text = "model") -> None:
-        model_path = os.path.join(Path(__file__).parents[2], folder_name)
-
-        if not os.path.exists(model_path):
-            os.mkdir(model_path)
-
-        model.save_weights(os.path.join(model_path, "RNN_custom_weights.h5"))
-        model.load_weights(os.path.join(model_path, "RNN_custom_weights.h5"))
-        model.save(os.path.join(model_path, "RNN_custom_model.hdf5"))
-
-    @staticmethod
     def get_model_path(folder_name: Text) -> Text:
         model_path_folder = os.path.join(Path(__file__).parents[2], folder_name)
         if not os.path.exists(model_path_folder):

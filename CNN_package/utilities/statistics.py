@@ -36,7 +36,7 @@ class Statistics:
                 if key in descriptions:
                     f.write(f"{descriptions[key]}\n{value}\n\n")
             f.write(f"The plot of class distributions is present in statistics folder under class_distributions.png name.\nFull path of the image is:\n")
-            f.write(f"{os.path.join(Path(__file__).parents[1], 'statistics', 'class_distributions.png')}")
+            f.write(f"{os.path.join(Path(__file__).parents[2], 'statistics', 'class_distribution.png')}")
         self.plot_class_distribution(save)
         
     def get_dataset_statistics(self) -> Dict[str, Any]:
