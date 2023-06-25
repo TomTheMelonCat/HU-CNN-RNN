@@ -19,10 +19,6 @@ class Preprocessing:
             self.params = DataIO.load_config("preprocessing_resnet", "general")
             self.params["preprocessing"] = self.params.pop("preprocessing_resnet")
 
-        if display_statistics:
-            self.statistics = Statistics(train_val_df)
-            if save_statistics:
-                DataIO.save_statistics("placeholder_for_statistics")
         self.split_data()
         self.set_generators()
 

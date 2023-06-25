@@ -10,7 +10,7 @@ from typing import Any, Text
 from CNN_package.utilities.data_io import DataIO
 
 
-class CustomCNN:
+class ComplexCNN:
     def __init__(self, preprocessing: Any) -> None:
         self.params = DataIO.load_config("preprocessing", "training", "general")
         self.preprocessing = preprocessing
@@ -76,7 +76,7 @@ class CustomCNN:
         )
 
         checkpointing = ModelCheckpoint(
-            DataIO.get_model_path("custom_CNN"), save_best_only=True, monitor="val_loss", mode="min"
+            DataIO.get_model_path("complex_CNN"), save_best_only=True, monitor="val_loss", mode="min"
         )
 
         history = model.fit(
@@ -91,7 +91,7 @@ class CustomCNN:
         )
 
     def test_(self) -> None:
-        model = load_model(DataIO.get_model_path('custom_CNN'))
+        model = load_model(DataIO.get_model_path('complex_CNN'))
 
         test_steps = np.ceil(self.preprocessing.test_df.shape[0] / self.params["general"]["batch_size"])
 
