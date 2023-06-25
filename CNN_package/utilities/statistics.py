@@ -29,6 +29,8 @@ class Statistics:
             "percent_landscape": "Percent landscape - the percentage of images that are landscape oriented (width > height).",
             "percent_square": "Percent square - the percentage of images that are exactly square (width == height)."
         }
+        if not os.path.exists('statistics'):
+            os.mkdir('statistics')
         with open(os.path.join('statistics', 'dataset_statistics.txt'), 'w') as f:
             for key, value in stats.items():
                 if key in descriptions:
